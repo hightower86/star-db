@@ -1,18 +1,46 @@
 
-const getResource = async (url) => {
-  const res = await fetch(url);
+class SwapiService {
 
-  if (!res.ok) {
-    throw new Error(`Could not fetch ${url}, recieved ${res.status}`);
+  _apiBase = 'https://swapi.co/api';
+
+  async getResource(url) {
+    const res = await fetch(`${this._apiBase}${url}`);
+
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, recieved ${res.status}`);
+    }
+    return await res.json();
   }
-  const body = await res.json();
-  return body;
+
+  async getAllPeople() {
+    const res = await this.getResource('/people/');
+    return res.results;
+  }
+  getPerson(id) {
+    return this.getResource(`/people/${id}`);
+  }
+  
+  async getAllPlanets() {
+    const res = await this.getResource('/planets/');
+    return res.results;
+  }
+  getPlanet(id) {
+    return this.getResource(`/planets/${id}`);
+  }
+  async getAllStarships() {
+    const res = await this.getResource('/starships/');
+    return res.results;
+  }
+  getStarship(id) {
+    return this.getResource(`/starships/${id}`);
+  }
+
 }
 
-getResource('https://swapi.co/api/films/27678/')
-  .then((body) => {
-    console.log(body);
-  })
-  .catch((err) => {
-    console.error('Could not fetch', err);
-  });
+// const swapi = new SwapiService();
+
+// swapi.getAllStarships().then((s) => {
+//   s.forEach((p) => {
+//     console.log(p.name)
+//   });
+// })
