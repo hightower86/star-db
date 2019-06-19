@@ -4,6 +4,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
+import TogglerRandomPlanet from '../toggler-random-planet';
 // import Spinner from '../spinner';
 
 import './app.css';
@@ -14,7 +15,7 @@ export default class App extends Component {
     showRandomPlanet: true
   };
 
-  onToggleShowRandomPlanet = () => {
+  onToggleRandomPlanet = () => {
     this.setState ((state) => {
       return {
         showRandomPlanet: !state.showRandomPlanet
@@ -24,12 +25,13 @@ export default class App extends Component {
 
   render() {
 
-    const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
+    const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
     return (
       <div>
         <Header />
         {planet}
+        <TogglerRandomPlanet onToggleRandomPlanet={this.onToggleRandomPlanet}/>
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList />
