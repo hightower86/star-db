@@ -31,7 +31,9 @@ export default class App extends Component {
       <div>
         <Header />
         {planet}
-        <TogglerRandomPlanet onToggleRandomPlanet={this.onToggleRandomPlanet}/>
+        <TogglerRandomPlanet 
+          onToggleRandomPlanet={this.onToggleRandomPlanet}
+        />
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList />
