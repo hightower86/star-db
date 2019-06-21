@@ -7,7 +7,7 @@ import ErrorButton from '../error-button';
 
 export default class PersonDetails extends Component {
 
-  swapiService = new SwapiService;
+  swapiService = new SwapiService();
 
   state = {
     person: null,
@@ -42,10 +42,6 @@ export default class PersonDetails extends Component {
 
   render() {
 
-    // if (!this.state.person) {
-    //   return <span>Select a person from a list</span>
-    // }
-
     const hasData = !this.state.loading;
 
     const content = hasData ? <PersonView person={this.state.person}/> : null ;
@@ -64,13 +60,10 @@ const PersonView = ({ person }) => {
 
   const { id, name, gender, 
     birthYear, eyeColor } = person;     
-  console.log('-------------------------');
-  console.log(person);
-  console.log('-------------------------');
-  console.log(name, gender, birthYear);
+
   return (
     <React.Fragment>
-      <img className="person-image"
+      <img className="person-image" alt='soon'
         src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
 
       <div className="card-body">
