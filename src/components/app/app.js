@@ -48,6 +48,8 @@ export default class App extends Component {
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         <PeoplePage />
+        <PeoplePage />
+        <PeoplePage />
       </div>
     );
   }
