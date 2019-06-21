@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-
-import Header from '../header';
-import RandomPlanet from '../random-planet';
-import PeoplePage from '../people-page';
-import TogglerRandomPlanet from '../toggler-random-planet';
 import ErrorIndicator from '../error-indicator';
-
+import Header from '../header';
+import PeoplePage from '../people-page';
+import RandomPlanet from '../random-planet';
+import TogglerRandomPlanet from '../toggler-random-planet';
+import ItemList from '../item-list';
+import PersonDetails from '../person-details';
 import './app.css';
+import SwapiService from '../../services/swapi-service';
+
+
 
 export default class App extends Component {
+
+  swapiService = new SwapiService();
 
   state = {
     showRandomPlanet: true,
@@ -16,9 +21,6 @@ export default class App extends Component {
   };
 
   componentDidCatch() {
-    console.log('-----------------------');
-    console.log('componentDidCatch()');
-    console.log('-----------------------');
     this.setState({
       hasError: true
     });
@@ -48,8 +50,16 @@ export default class App extends Component {
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         <PeoplePage />
-        <PeoplePage />
-        <PeoplePage />
+        <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList 
+              getData={this.swapiService.getAllPlanets}
+              onItemSelected={this.onPersonSelected}/>
+          </div>
+          {/* <div className="col-md-6">
+            <PersonDetails personId={this.state.selectedPerson}/>
+          </div> */}
+        </div>
       </div>
     );
   }
