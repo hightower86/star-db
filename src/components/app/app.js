@@ -5,7 +5,6 @@ import PeoplePage from '../people-page';
 import RandomPlanet from '../random-planet';
 import TogglerRandomPlanet from '../toggler-random-planet';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
 import './app.css';
 import SwapiService from '../../services/swapi-service';
 

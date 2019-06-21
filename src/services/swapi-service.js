@@ -3,7 +3,7 @@ export default class SwapiService {
 
   _apiBase = 'https://swapi.co/api';
 
-  async getResource(url) {
+  getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
 
     if (!res.ok) {
@@ -42,7 +42,7 @@ export default class SwapiService {
     return  this._trasformStarship(starship);
   }
 
-  _extractId(item) {
+  _extractId = (item) => {
     const idRegExp = /\/([0-9]*)\/$/;
     return item.url.match(idRegExp)[1];
   }

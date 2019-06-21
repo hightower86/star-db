@@ -7,7 +7,7 @@ import './random-planet.css';
 
 export default class RandomPlanet extends Component {
 
-  swapiService = new SwapiService;
+  swapiService = new SwapiService();
 
   state = {
     planet: {},
@@ -16,7 +16,6 @@ export default class RandomPlanet extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount()')
     this.updatePlanet();
   }
 
@@ -74,7 +73,7 @@ const PlanetView = ({ planet }) => {
 
   return (
     <React.Fragment>
-      <img className="planet-image"
+      <img className="planet-image" alt='load'
             src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
       <div>
       <h4>{name}</h4>
