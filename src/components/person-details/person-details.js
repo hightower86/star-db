@@ -63,8 +63,10 @@ const PersonView = ({ person }) => {
 
   const { id, name, gender, 
     birthYear, eyeColor } = person;     
-
-  console.log(name);
+  console.log('-------------------------');
+  console.log(person);
+  console.log('-------------------------');
+  console.log(name, gender, birthYear);
   return (
     <React.Fragment>
       <img className="person-image"
