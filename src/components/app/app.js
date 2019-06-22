@@ -50,11 +50,11 @@ export default class App extends Component {
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         <PeoplePage />
-        <div className="col-md-6">
+        {/* <div className="col-md-6">
           <ItemList onItemSelected={this.onPersonSelected}
                     getData={this.swapiService.getAllPlanets}
           />
-        </div>
+        </div> */}
       
       </div>
     );
