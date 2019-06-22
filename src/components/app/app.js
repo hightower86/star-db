@@ -5,7 +5,7 @@ import RandomPlanet from '../random-planet';
 import PeoplePage from '../people-page';
 import TogglerRandomPlanet from '../toggler-random-planet';
 import ErrorIndicator from '../error-indicator';
-import ItemList from '../item-list';
+import PlanetPage from '../planet-page';
 
 import './app.css';
 import SwapiService from '../../services/swapi-service';
@@ -50,11 +50,8 @@ export default class App extends Component {
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         <PeoplePage />
-        {/* <div className="col-md-6">
-          <ItemList onItemSelected={this.onPersonSelected}
-                    getData={this.swapiService.getAllPlanets}
-          />
-        </div> */}
+        <PlanetPage />
+        
       
       </div>
     );

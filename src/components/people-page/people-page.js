@@ -32,15 +32,15 @@ export default class PeoplePage extends Component {
     }
 
     return (
-      <div className="row mb2">
+      <div className="row mb2 people-page">
         <div className="col-md-6">
           <ItemList onItemSelected={this.onPersonSelected}
                     getData={this.swapiService.getAllPeople}
                     renderItem={({ name, birthYear, gender }) => (
                          <span>{name} ( birth year : {birthYear},
-                         gender: {gender} ) <button className='btn btn-info'>!</button></span>
-                    )
-                    }
+                         gender: {gender} ) 
+                        <button className='ml-2 btn btn-info'>!</button></span>
+                    )}
           />
         </div>
         <div className="col-md-6">
