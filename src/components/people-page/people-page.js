@@ -15,7 +15,7 @@ export default class PeoplePage extends Component {
   }
 
   componentDidCatch(error, info) {
-    debugger;
+    // debugger;
     this.setState({ hasError: true });
   }
 
@@ -36,7 +36,11 @@ export default class PeoplePage extends Component {
         <div className="col-md-6">
           <ItemList onItemSelected={this.onPersonSelected}
                     getData={this.swapiService.getAllPeople}
-                    renderItem={(item) => item.name }
+                    renderItem={({ name, birthYear, gender }) => (
+                         <span>{name} ( birth year : {birthYear},
+                         gender: {gender} ) <button className='btn btn-info'>!</button></span>
+                    )
+                    }
           />
         </div>
         <div className="col-md-6">
