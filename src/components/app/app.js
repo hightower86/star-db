@@ -50,7 +50,7 @@ export default class App extends Component {
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         <PeoplePage />
-        <PlanetPage />
+        {/* <PlanetPage /> */}
         
       
       </div>
