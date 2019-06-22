@@ -30,20 +30,28 @@ export default class PlanetPage extends Component {
       return <ErrorIndicator />;
     }
 
+    const itemList = (
+      <ItemList onItemSelected={this.onPlanetSelected}
+                getData={this.swapiService.getAllPlanets}
+                renderItem={({ name, population, diameter }) => (
+                    <span>{name} ( population : {population},
+                    diameter: {diameter} ) 
+                    <button className='ml-2 btn btn-info'>!</button></span>
+                )}
+      />
+    )
+
+    const planetDetails = (
+        <PlanetDetails planetId={this.state.selectedPlanet}/>
+    )
+
     return(
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList onItemSelected={this.onPlanetSelected}
-                    getData={this.swapiService.getAllPlanets}
-                    renderItem={({ name, population, diameter }) => (
-                        <span>{name} ( population : {population},
-                        diameter: {diameter} ) 
-                        <button className='ml-2 btn btn-info'>!</button></span>
-                    )}
-          />
+          {itemList}
         </div>
         <div className="col-md-6">
-          <PlanetDetails planetId={this.state.selectedPlanet}/>
+          {planetDetails}
         </div>
       </div>
     );

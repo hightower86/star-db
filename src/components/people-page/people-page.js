@@ -31,10 +31,8 @@ export default class PeoplePage extends Component {
       return <ErrorIndicator />;
     }
 
-    return (
-      <div className="row mb2 people-page">
-        <div className="col-md-6">
-          <ItemList onItemSelected={this.onPersonSelected}
+    const itemList = (
+        <ItemList onItemSelected={this.onPersonSelected}
                     getData={this.swapiService.getAllPeople}
                     renderItem={({ name, birthYear, gender }) => (
                          <span>{name} ( birth year : {birthYear},
@@ -42,9 +40,19 @@ export default class PeoplePage extends Component {
                         <button className='ml-2 btn btn-info'>!</button></span>
                     )}
           />
+    )
+
+    const personDetails =  (
+        <PersonDetails personId={this.state.selectedPerson}/>
+    )
+
+    return (
+      <div className="row mb2 people-page">
+        <div className="col-md-6">
+          {itemList}
         </div>
         <div className="col-md-6">
-          <PersonDetails personId={this.state.selectedPerson}/>
+          {personDetails}
         </div>
       </div>
     );
