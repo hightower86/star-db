@@ -3,6 +3,7 @@ import ErrorIndicator from '../error-indicator';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
 import SwapiService from '../../services/swapi-service';
+import Row from '../../containers/row';
 import './people-page.css';
 
 export default class PeoplePage extends Component {
@@ -47,14 +48,7 @@ export default class PeoplePage extends Component {
     )
 
     return (
-      <div className="row mb2 people-page">
-        <div className="col-md-6">
-          {itemList}
-        </div>
-        <div className="col-md-6">
-          {personDetails}
-        </div>
-      </div>
+      <Row left={itemList} right={personDetails}/>
     );
   }
 }
