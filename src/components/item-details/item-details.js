@@ -11,7 +11,8 @@ export default class ItemDetails extends Component {
 
   state = {
     item: null,
-    loading: true
+    loading: true,
+    image: null
   }
 
   componentDidMount() {
@@ -28,15 +29,18 @@ export default class ItemDetails extends Component {
   }
 
   updateItem() {
-    const { itemId, getData } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
     if (!itemId) {
       return null;
     }
 
     getData(itemId)
     .then((item) => {
-      this.setState({ item,
-                      loading: false });
+      this.setState({ 
+        item,
+        loading: false,
+        image: getImageUrl(item) 
+      });
     });
   }
 
@@ -44,7 +48,7 @@ export default class ItemDetails extends Component {
 
     const hasData = !this.state.loading;
 
-    const content = hasData ? <ItemView item={this.state.item}/> : null ;
+    const content = hasData ? <ItemView item={this.state.item} image={this.state.image}/> : null ;
     const spinner = !hasData ? <Spinner/> : null;
 
     return (
@@ -56,7 +60,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({ item }) => {
+const ItemView = ({ item, image }) => {
 
   const { id, name, gender, 
     birthYear, eyeColor } = item;     
@@ -64,7 +68,7 @@ const ItemView = ({ item }) => {
   return (
     <React.Fragment>
       <img className="item-image" alt='soon'
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+        src={image} />
 
       <div className="card-body">
         <h4>{name}</h4>

@@ -42,18 +42,23 @@ export default class App extends Component {
       return <ErrorIndicator />
     }
     const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
-    const { getPerson, getStarship } = this.swapiService;
-    
+    const { getPerson, 
+            getStarship, 
+            getPersonImage,
+            getStarshipImage } = this.swapiService;
+
     const personDetails = (
       <ItemDetails 
         itemId={11}
-        getData={getPerson} />
+        getData={getPerson}
+        getImageUrl={getPersonImage} />
     );
 
     const starshipDetails = (
       <ItemDetails 
-        itemId={3}
-        getData={getStarship}  />
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage} />
     );
 
 
@@ -71,7 +76,6 @@ export default class App extends Component {
         <PeoplePage /> */}
         {/* <PlanetPage /> */}
         
-      
       </div>
     );
   }
