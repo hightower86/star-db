@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
 
-import './person-details.css';
+import './item-details.css';
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 import ErrorButton from '../error-button';
 
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
 
   state = {
-    person: null,
+    item: null,
     loading: true
   }
 
   componentDidMount() {
-    this.updatePerson();
+    this.updateItem();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.personId !== prevProps.personId) {
+    if (this.props.itemId !== prevProps.itemId) {
       this.setState({
         loading: true
       })
-      this.updatePerson();
+      this.updateItem();
     }
   }
 
-  updatePerson() {
-    const { personId } = this.props;
-    if (!personId) {
+  updateItem() {
+    const { itemId } = this.props;
+    if (!itemId) {
       return null;
     }
 
-    this.swapiService.getPerson(personId)
-    .then((person) => {
-      this.setState({ person,
+    this.swapiService.getItem(itemId)
+    .then((item) => {
+      this.setState({ item,
                       loading: false });
     });
   }
@@ -44,11 +44,11 @@ export default class PersonDetails extends Component {
 
     const hasData = !this.state.loading;
 
-    const content = hasData ? <PersonView person={this.state.person}/> : null ;
+    const content = hasData ? <ItemView item={this.state.item}/> : null ;
     const spinner = !hasData ? <Spinner/> : null;
 
     return (
-      <div className="person-details card">
+      <div className="item-details card">
         {spinner}
         {content}
       </div>
@@ -56,14 +56,14 @@ export default class PersonDetails extends Component {
   }
 }
 
-const PersonView = ({ person }) => {
+const ItemView = ({ item }) => {
 
   const { id, name, gender, 
-    birthYear, eyeColor } = person;     
+    birthYear, eyeColor } = item;     
 
   return (
     <React.Fragment>
-      <img className="person-image" alt='soon'
+      <img className="item-image" alt='soon'
         src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
 
       <div className="card-body">
