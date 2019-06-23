@@ -5,6 +5,18 @@ import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 import ErrorButton from '../error-button';
 
+const Record = ({ item, field, label }) => {
+  return (
+    <li className="list-group-item">
+      <span className="term">{label}</span>
+      <span>{ field }</span>
+    </li>
+  );
+};
+
+export {
+  Record
+};
 export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
@@ -48,7 +60,7 @@ export default class ItemDetails extends Component {
 
     const hasData = !this.state.loading;
 
-    const content = hasData ? <ItemView item={this.state.item} image={this.state.image}/> : null ;
+    const content = hasData ? <ItemView item={this.state.item} image={this.state.image} that={this}/> : null ;
     const spinner = !hasData ? <Spinner/> : null;
 
     return (
@@ -60,7 +72,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({ item, image }) => {
+const ItemView = ({ item, image, that }) => {
 
   const { id, name, gender, 
     birthYear, eyeColor } = item;     
@@ -73,21 +85,11 @@ const ItemView = ({ item, image }) => {
       <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Birth Year</span>
-            <span>{birthYear}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Eye Color</span>
-            <span>{eyeColor}</span>
-          </li>
+          {console.log(item)}
+          { that.props.children }
         </ul>
         <ErrorButton />
       </div>
     </React.Fragment>
-  )
+  );
 }
