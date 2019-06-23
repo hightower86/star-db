@@ -76,13 +76,13 @@ export default class App extends Component {
       <div>
         <Header />
         {planet}
-
-        <Row left={personDetails} right={starshipDetails} />
-
-        {/* <TogglerRandomPlanet 
+        <TogglerRandomPlanet 
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
-        <PeoplePage /> */}
+        {/* <Row left={personDetails} right={starshipDetails} /> */}
+
+        
+        <PeoplePage />
         {/* <PlanetPage /> */}
         
       </div>
