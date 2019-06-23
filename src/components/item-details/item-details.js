@@ -85,8 +85,11 @@ const ItemView = ({ item, image, that }) => {
       <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-          {console.log(item)}
-          { that.props.children }
+          {
+            React.Children.map(that.props.children, (child, idx) => {
+              return <li>{idx}</li>;
+            })
+          }
         </ul>
         <ErrorButton />
       </div>
