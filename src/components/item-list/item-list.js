@@ -36,7 +36,7 @@ class ItemList extends Component {
   }
 }
 
-const f = () => {
+const withData = (View) => {
   return class extends Component {
 
     state = {
@@ -62,10 +62,10 @@ const f = () => {
       return <Spinner />
     }
 
-      return <ItemList { ...this.props } data={data}/>;
+      return <View { ...this.props } data={data}/>;
     }
 
   };
 };
 
-export default f();
+export default withData(ItemList);
