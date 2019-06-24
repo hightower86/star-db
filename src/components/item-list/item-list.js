@@ -3,37 +3,29 @@ import React, { Component } from 'react';
 import './item-list.css';
 import Spinner from '../spinner';
 
-class ItemList extends Component {
+const ItemList = (props) => {
 
-  
-  renderItems = (arr) => {
-    return arr.map((item) => {
+  const { data, onItemSelected, children } = props;
 
-      const { id } = item;
-      const label = this.props.children(item);
+  const items = data.map((item) => {
 
-      return (
-        <li className="list-group-item"
-            key={id}
-            onClick={() => this.props.onItemSelected(id)}>
-            {label}
-        </li>
-      );
-    })
-  }
-
-  render() {
-
-    const { data } = this.props;
-
-    const items = this.renderItems(data);
+    const { id } = item;
+    const label = children(item);
 
     return (
-      <ul className="item-list list-group">
-        {items}
-      </ul>
+      <li className="list-group-item"
+          key={id}
+          onClick={() => onItemSelected(id)}>
+          {label}
+      </li>
     );
-  }
+  })
+
+  return (
+    <ul className="item-list list-group">
+      {items}
+    </ul>
+  );
 }
 
 const withData = (View) => {
