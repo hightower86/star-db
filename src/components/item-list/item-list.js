@@ -24,7 +24,9 @@ class ItemList extends Component {
 
   render() {
 
-    const items = this.renderItems(itemList);
+    const { data } = this.props;
+
+    const items = this.renderItems(data);
 
     return (
       <ul className="item-list list-group">
@@ -38,15 +40,15 @@ const f = () => {
   return class extends Component {
 
     state = {
-      itemList: null
+      data: null
     }
   
     componentDidMount() {
       const { getData } = this.props;
       getData()
-      .then((items) => {
+      .then((data) => {
         this.setState({
-          itemList: items,
+          data: data,
         });
       });
     }
@@ -54,13 +56,13 @@ const f = () => {
 
     render() {
 
-    const { itemList } = this.state;
+    const { data } = this.state;
     
-    if (!itemList) {
+    if (!data) {
       return <Spinner />
     }
 
-      return <ItemList { ...this.props }/>;
+      return <ItemList { ...this.props } data={data}/>;
     }
 
   };
