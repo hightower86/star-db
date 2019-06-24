@@ -5,20 +5,7 @@ import Spinner from '../spinner';
 
 class ItemList extends Component {
 
-  state = {
-    itemList: null
-  }
-
-  componentDidMount() {
-    const { getData } = this.props;
-    getData()
-    .then((items) => {
-      this.setState({
-        itemList: items,
-      });
-    });
-  }
-
+  
   renderItems = (arr) => {
     return arr.map((item) => {
 
@@ -37,12 +24,6 @@ class ItemList extends Component {
 
   render() {
 
-    const { itemList } = this.state;
-    
-    if (!itemList) {
-      return <Spinner />
-    }
-
     const items = this.renderItems(itemList);
 
     return (
@@ -54,7 +35,35 @@ class ItemList extends Component {
 }
 
 const f = () => {
-  return ItemList
+  return class extends Component {
+
+    state = {
+      itemList: null
+    }
+  
+    componentDidMount() {
+      const { getData } = this.props;
+      getData()
+      .then((items) => {
+        this.setState({
+          itemList: items,
+        });
+      });
+    }
+  
+
+    render() {
+
+    const { itemList } = this.state;
+    
+    if (!itemList) {
+      return <Spinner />
+    }
+
+      return <ItemList { ...this.props }/>;
+    }
+
+  };
 };
 
 export default f();
