@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import withData from '../hoc-helpers/with-data'
 
 import './item-list.css';
-import Spinner from '../spinner';
+import SwapiService from '../../services/swapi-service';
 
 const ItemList = (props) => {
 
@@ -28,36 +29,7 @@ const ItemList = (props) => {
   );
 }
 
-const withData = (View) => {
-  return class extends Component {
 
-    state = {
-      data: null
-    }
-  
-    componentDidMount() {
-      const { getData } = this.props;
-      getData()
-      .then((data) => {
-        this.setState({
-          data: data,
-        });
-      });
-    }
-  
+const { getAllPeople } = new SwapiService()
 
-    render() {
-
-    const { data } = this.state;
-    
-    if (!data) {
-      return <Spinner />
-    }
-
-      return <View { ...this.props } data={data}/>;
-    }
-
-  };
-};
-
-export default withData(ItemList);
+export default withData(ItemList, getAllPeople);
