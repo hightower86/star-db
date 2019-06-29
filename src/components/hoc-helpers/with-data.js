@@ -31,17 +31,17 @@ const withData = (View, getData) => {
 
     render() {
 
-    const { data } = this.state;
+      const { data } = this.state;
 
-    if (this.state.hasError) {
-      return <ErrorIndicator />
-    }
-    
-    if (!data) {
-      return <Spinner />
-    }
+      if (this.state.hasError) {
+        return <ErrorIndicator />
+      }
+      
+      if (!data) {
+        return <Spinner />
+      }
 
-      return <View { ...this.props } data={data}/>;
+      return <View { ... this.props } data={data}/>;
     }
 
   };

@@ -3,14 +3,18 @@ import ErrorIndicator from '../error-indicator';
 import ItemList from '../item-list';
 import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
+import { PersonList } from '../sw-components/item-lists';
 import Row from '../../containers/row';
 import ErrorBoundry from '../error-boundry';
 import './people-page.css';
+import { directive } from '@babel/types';
+
+
 
 export default class PeoplePage extends Component {
 
   swapiService = new SwapiService();
-  
+
   state = {
     selectedPerson: 3
   }
@@ -24,21 +28,10 @@ export default class PeoplePage extends Component {
   render() {
 
     const itemList = (
-      <ItemList onItemSelected={this.onPersonSelected}
-        getData={this.swapiService.getAllPeople}>
-
-        {(i) => (
-          `${i.name} (${i.birthYear})`
-        )}
-
-      </ItemList>
+      <PersonList> 
+        {({name}) => <span>{name}</span>}
+      </PersonList>
     )
-
-    // const personDetails1 =  (
-    //   <ErrorBoundry>
-    //     <PersonDetails personId={this.state.selectedPerson}/>
-    //   </ErrorBoundry>
-    // )
 
     const personDetails = (
       <ItemDetails 
@@ -53,7 +46,9 @@ export default class PeoplePage extends Component {
     );
 
     return (
-      <Row left={itemList} right={personDetails}/>
+      <div>
+        <Row left={itemList} right={personDetails}/>
+      </div>
     );
   }
 }
