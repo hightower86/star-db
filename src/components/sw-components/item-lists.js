@@ -5,7 +5,21 @@ import { withData } from '../hoc-helpers/';
 
 const { getAllPeople } = new SwapiService();
 
-const PersonList = withData(ItemList, getAllPeople);
+const withChildFunction = (Wrapped, fn) => {
+  return (props) => {
+    return (
+      <Wrapped { ...props }>
+        {fn}
+      </Wrapped>
+    )
+  };
+};
+
+const renderName = ({name}) => <span>{name}</span>
+
+const PersonList = withData(
+                      withChildFunction(ItemList, renderName),
+                      getAllPeople);
 
 const StarshipList = () => {};
 

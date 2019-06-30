@@ -28,9 +28,7 @@ export default class PeoplePage extends Component {
   render() {
 
     const itemList = (
-      <PersonList> 
-        {({name}) => <span>{name}</span>}
-      </PersonList>
+      <PersonList />
     )
 
     const personDetails = (
