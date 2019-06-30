@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import Row from '../../containers/row';
 import PeoplePage from '../people-page';
 import TogglerRandomPlanet from '../toggler-random-planet';
 import ErrorIndicator from '../error-indicator';
@@ -10,6 +9,7 @@ import ErrorIndicator from '../error-indicator';
 import './app.css';
 import SwapiService from '../../services/swapi-service';
 import ItemDetails, { Record } from '../item-details';
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 export default class App extends Component {
 
@@ -73,7 +73,7 @@ export default class App extends Component {
 
     return (
 
-      <div>
+      <SwapiServiceProvider value={this.swapiService}>
         <Header />
         {planet}
         <TogglerRandomPlanet 
@@ -85,7 +85,7 @@ export default class App extends Component {
         <PeoplePage />
         {/* <PlanetPage /> */}
         
-      </div>
+      </SwapiServiceProvider>
     );
   }
 };
