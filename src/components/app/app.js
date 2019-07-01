@@ -8,12 +8,14 @@ import ErrorIndicator from '../error-indicator';
 
 import './app.css';
 import SwapiService from '../../services/swapi-service';
+import DummySwapiService from '../../services/dummy-swapi-service';
+
 import ItemDetails, { Record } from '../item-details';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
+  swapiService = new DummySwapiService();
 
   state = {
     showRandomPlanet: true,

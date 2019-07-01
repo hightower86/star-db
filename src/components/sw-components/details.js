@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDetails, { Record } from '../item-details';
-import SwapiService from '../../services/swapi-service';
+// import SwapiService from '../../services/swapi-service';
 import { withData } from '../hoc-helpers';
 import { SwapiServiceConsumer } from '../swapi-service-context';
 
