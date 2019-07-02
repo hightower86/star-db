@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import ErrorIndicator from '../error-indicator';
-import ItemList from '../item-list';
-// import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
 import { PersonList, PersonDetails } from '../sw-components/';
 import Row from '../../containers/row';
-import ErrorBoundry from '../error-boundry';
 import './people-page.css';
-import { directive } from '@babel/types';
-
-
 
 export default class PeoplePage extends Component {
 
