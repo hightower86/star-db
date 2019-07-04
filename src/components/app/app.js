@@ -13,6 +13,7 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 import ItemDetails, { Record } from '../item-details';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
+
 export default class App extends Component {
 
   swapiService = new DummySwapiService();
@@ -36,6 +37,10 @@ export default class App extends Component {
       };
     });
   };
+
+  onServiceChange = () => {
+    console.log('Change service')
+  }
 
   render() {
 
@@ -76,7 +81,7 @@ export default class App extends Component {
     return (
 
       <SwapiServiceProvider value={this.swapiService}>
-        <Header />
+        <Header onServiceChange={this.onServiceChange}/>
         {planet}
         <TogglerRandomPlanet 
           onToggleRandomPlanet={this.onToggleRandomPlanet}
