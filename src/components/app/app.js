@@ -13,14 +13,12 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 import ItemDetails, { Record } from '../item-details';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
-
 export default class App extends Component {
-
-  swapiService = new DummySwapiService();
 
   state = {
     showRandomPlanet: true,
-    hasError: false
+    hasError: false,
+    swapiService: new DummySwapiService()
   };
 
   componentDidCatch() {
@@ -39,8 +37,18 @@ export default class App extends Component {
   };
 
   onServiceChange = () => {
-    console.log('Change service')
-  }
+    this.setState(({ swapiService }) => {
+
+      const Service = swapiService instanceof SwapiService ? 
+                        DummySwapiService : SwapiService;
+      console.log('switched to ' + Service.name);   
+      
+      return {
+        swapiService: new Service()
+      };
+
+    });
+  };
 
   render() {
 
@@ -51,7 +59,7 @@ export default class App extends Component {
     const { getPerson, 
             getStarship, 
             getPersonImage,
-            getStarshipImage } = this.swapiService;
+            getStarshipImage } = this.state.swapiService;
 
     const personDetails = (
       <ItemDetails 
@@ -61,10 +69,7 @@ export default class App extends Component {
 
         <Record field='gender' label='Gender' />
         <Record field='eyeColor' label='Eye Color' />
-
       </ItemDetails>
-
-
     );
 
     const starshipDetails = (
@@ -80,15 +85,13 @@ export default class App extends Component {
 
     return (
 
-      <SwapiServiceProvider value={this.swapiService}>
+      <SwapiServiceProvider value={this.state.swapiService}>
         <Header onServiceChange={this.onServiceChange}/>
         {planet}
         <TogglerRandomPlanet 
           onToggleRandomPlanet={this.onToggleRandomPlanet}
         />
         {/* <Row left={personDetails} right={starshipDetails} /> */}
-
-        
         <PeoplePage />
         {/* <PlanetPage /> */}
         
