@@ -21,7 +21,7 @@ const Header = ({ onServiceChange }) => {
           <a href="@">Starships</a>
         </li>
       </ul>
-      <button className='btn btn-primary btn-sm mb-3 h-2'
+      <button className='btn btn-primary btn-sm mb-3'
               onClick={onServiceChange}>
         Dummy
       </button>
