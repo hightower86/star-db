@@ -3,15 +3,14 @@ import React, { Component } from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PeoplePage from '../people-page';
-import TogglerRandomPlanet from '../toggler-random-planet';
 import ErrorIndicator from '../error-indicator';
 
 import './app.css';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
 
-import ItemDetails, { Record } from '../item-details';
 import { SwapiServiceProvider } from '../swapi-service-context';
+import ErrorBoundry from '../error-boundry';
 
 export default class App extends Component {
 
@@ -56,46 +55,16 @@ export default class App extends Component {
       return <ErrorIndicator />
     }
     const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
-    const { getPerson, 
-            getStarship, 
-            getPersonImage,
-            getStarshipImage } = this.state.swapiService;
-
-    const personDetails = (
-      <ItemDetails 
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage} >
-
-        <Record field='gender' label='Gender' />
-        <Record field='eyeColor' label='Eye Color' />
-      </ItemDetails>
-    );
-
-    const starshipDetails = (
-      <ItemDetails 
-        itemId={5}
-        getData={getStarship}
-        getImageUrl={getStarshipImage} >
-          <Record field='length' label='Length' />
-          <Record field='costInCredits' label='Cost' />
-      </ItemDetails>
-    );
-
 
     return (
-
-      <SwapiServiceProvider value={this.state.swapiService}>
-        <Header onServiceChange={this.onServiceChange}/>
-        {planet}
-        <TogglerRandomPlanet 
-          onToggleRandomPlanet={this.onToggleRandomPlanet}
-        />
-        {/* <Row left={personDetails} right={starshipDetails} /> */}
-        <PeoplePage />
-        {/* <PlanetPage /> */}
-        
-      </SwapiServiceProvider>
+      <ErrorBoundry>
+         <SwapiServiceProvider value={this.state.swapiService}>
+          <Header onServiceChange={this.onServiceChange}/>
+          {planet}
+          <PeoplePage />
+          
+        </SwapiServiceProvider>
+      </ErrorBoundry>
     );
   }
 };
