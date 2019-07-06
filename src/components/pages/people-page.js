@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
 import { PersonList, PersonDetails } from '../sw-components';
 import Row from '../../containers/row';
-import './people-page.css';
+import './pages.css';
 
 export default class PeoplePage extends Component {
 

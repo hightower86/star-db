@@ -26,13 +26,23 @@ const mapPlanetMethodsToProps = (swapiService) => {
   }
 };
 
+const mapStarshipMethodsToProps = (swapiService) => {
+  return {
+    getData: swapiService.getAllStarships
+  }
+}
+
 const PersonList = withSwapiService (
                     withData (
                       withChildFunction(ItemList, renderName)), 
                     mapPersonMethodsToProps
 );
 
-const StarshipList = () => {};
+const StarshipList = withSwapiService(
+                      withData (
+                        withChildFunction(ItemList, renderName)),
+                    mapStarshipMethodsToProps    
+);
 
 const PlanetList = withSwapiService(
                     withData (

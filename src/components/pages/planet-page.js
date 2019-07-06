@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
 import { PlanetList, PlanetDetails } from '../sw-components';
 import Row from '../../containers/row';
-import './people-page.css';
+import './pages.css';
 
 export default class PlanetPage extends Component {
 
