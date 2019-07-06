@@ -9,7 +9,7 @@ export default class PeoplePage extends Component {
   swapiService = new SwapiService();
 
   state = {
-    selectedPerson: 3
+    selectedPerson: 1
   }
 
   onPersonSelected = (id) => {
@@ -21,11 +21,11 @@ export default class PeoplePage extends Component {
   render() {
 
     const itemList = (
-      <PersonList />
+      <PersonList onItemSelected={this.onPersonSelected}/>
     )
 
     const personDetails = (
-      <PersonDetails itemId={10}/>
+      <PersonDetails itemId={this.state.selectedPerson}/>
      );
 
     return (

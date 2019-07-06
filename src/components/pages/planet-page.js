@@ -21,11 +21,11 @@ export default class PlanetPage extends Component {
   render() {
 
     const itemList = (
-      <PlanetList />
+      <PlanetList onItemSelected={this.onPlanetSelected}/>
     )
 
     const planetDetails = (
-      <PlanetDetails itemId={4}/>
+      <PlanetDetails itemId={this.state.selectedPlanet}/>
      );
 
     return (

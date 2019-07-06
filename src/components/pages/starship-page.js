@@ -6,10 +6,11 @@ import './pages.css';
 export default class StarshipPage extends Component {
 
   state = {
-    selectedStarship: 3
+    selectedStarship: 11
   }
 
   onStarshipSelected = (id) => {
+    console.log(id);
     this.setState({
       selectedStarship: id
     }); 
@@ -18,11 +19,11 @@ export default class StarshipPage extends Component {
   render() {
 
     const itemList = (
-      <StarshipList />
+      <StarshipList onItemSelected={this.onStarshipSelected}/>
     );
 
     const starshipDetails = (
-      <StarshipDetails itemId={2}/>
+      <StarshipDetails itemId={this.state.selectedStarship}/>
      );
 
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
-import ErrorBounry from '../error-boundry';
+//import ErrorBounry from '../error-boundry';
 
 const withData = (View) => {
   return class extends Component {
