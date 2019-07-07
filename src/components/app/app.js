@@ -15,7 +15,6 @@ import ErrorBoundry from '../error-boundry';
 export default class App extends Component {
 
   state = {
-    showRandomPlanet: true,
     hasError: false,
     swapiService: new SwapiService()
   };
@@ -26,14 +25,6 @@ export default class App extends Component {
       hasError: true
     });
   }
-
-  onToggleRandomPlanet = () => {
-    this.setState ((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      };
-    });
-  };
 
   onServiceChange = () => {
     this.setState(({ swapiService }) => {
@@ -54,13 +45,12 @@ export default class App extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator />
     }
-    const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
     return (
       <ErrorBoundry>
          <SwapiServiceProvider value={this.state.swapiService}>
           <Header onServiceChange={this.onServiceChange}/>
-          {planet}
+          <RandomPlanet />
           <PeoplePage />
           <PlanetPage />
           <StarshipPage />
