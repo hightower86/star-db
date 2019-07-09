@@ -10,7 +10,7 @@ export default class StarshipPage extends Component {
   }
 
   onStarshipSelected = (id) => {
-    console.log(id);
+    //console.log(id);
     this.setState({
       selectedStarship: id
     }); 
