@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 
 import './row.css';
 
@@ -13,6 +14,11 @@ const Row = ({ left, right }) => {
         </div>
     </div>
   )
+}
+
+Row.propType = {
+  left: PropType.node,
+  right: PropType.node 
 }
 
 export default Row;
