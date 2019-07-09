@@ -49,12 +49,14 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-         <SwapiServiceProvider value={this.state.swapiService}>
-          <Header onServiceChange={this.onServiceChange}/>
-          <RandomPlanet />
-          <PeoplePage />
-          <PlanetPage />
-          <StarshipPage />
+        <SwapiServiceProvider value={this.state.swapiService}>
+          <Router>
+            <Header onServiceChange={this.onServiceChange}/>
+            <RandomPlanet />
+            <Route path='/people' component={PeoplePage} />
+            <Route path='/planets' component={PlanetPage} />
+            <Route path='/starships' component={StarshipPage} />
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
