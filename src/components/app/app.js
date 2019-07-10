@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
@@ -62,43 +62,42 @@ export default class App extends Component {
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
           <Router>
-            <Header onServiceChange={this.onServiceChange}/>
-            <RandomPlanet />
-            <Route path='/' 
-                   render={()=><h2>Welcome to StarDB</h2>} 
-                   exact/>
-             <Route path='/people' 
-                   render={()=><h2>People</h2>} 
-                   exact/>
-            <Route path='/people/:id?' component={PeoplePage} />
-            <Route path='/planets' 
-                   render={()=><h2>Planets</h2>} 
-                   exact/>
-            <Route path='/planets' exact component={PlanetPage} />
-            <Route path='/planets/:id' 
-                   render={({ match })=>{
-                     const { id } = match.params;
-                     return <PlanetDetails itemId={id} />
-                   }}/>
-            <Route path='/starships' exact component={StarshipPage}/> 
-            <Route path='/starships/:id' 
-                   render={({ match })=>{
-                     const { id } = match.params;
-                     return <StarshipDetails itemId={id} />
-                   }}/>
-            <Route path='/secret' 
-                   render={() => {
-                     return <SecretPage 
-                              isLoggedIn={isLoggedIn}/>
-                    }} />
-            <Route path='/login' 
-                   render={() => {
-                     return <LoginPage
-                        isLoggedIn={isLoggedIn}
-                        onLogin={this.onLogin} />
-                    }} />
-            
+              <Header onServiceChange={this.onServiceChange}/>
+              <RandomPlanet />
+            <Switch>  
+              <Route path='/' 
+                    render={()=><h2>Welcome to StarDB</h2>} 
+                    exact/>
+
+              <Route path='/people/:id?' component={PeoplePage} />
+              <Route path='/planets/' exact component={PlanetPage} />
+              <Route path='/planets/:id' 
+                    render={({ match })=>{
+                      const { id } = match.params;
+                      return <PlanetDetails itemId={id} />
+                    }}/>
+              <Route path='/starships' exact component={StarshipPage}/> 
+              <Route path='/starships/:id' 
+                    render={({ match })=>{
+                      const { id } = match.params;
+                      return <StarshipDetails itemId={id} />
+                    }}/>
+              <Route path='/secret' 
+                    render={() => {
+                      return <SecretPage 
+                                isLoggedIn={isLoggedIn}/>
+                      }} />
+              <Route path='/login' 
+                    render={() => {
+                      return <LoginPage
+                          isLoggedIn={isLoggedIn}
+                          onLogin={this.onLogin} />
+                      }} />
+            {/* последний в свитче роут сработает, если не найден ни один путь перед ним. */}
+              <Route render={() => <h3 className='warning'>Page not found</h3>} />
+            </Switch> 
           </Router>
+         
         </SwapiServiceProvider>
       </ErrorBoundry>
     );
