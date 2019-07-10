@@ -1,31 +1,18 @@
-import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { PersonList, PersonDetails } from '../sw-components';
 import Row from '../../containers/row';
 import './pages.css';
 
-export default class PeoplePage extends Component {
+const PeoplePage = ({ history, match }) => {
 
-  swapiService = new SwapiService();
-
-  state = {
-    selectedPerson: 1
-  }
-
-  onPersonSelected = (id) => {
-    this.setState({
-      selectedPerson: id
-    }); 
-  }
-
-  render() {
-
+    const { id } =  match.params ;
     const itemList = (
-      <PersonList onItemSelected={this.onPersonSelected}/>
-    )
+      <PersonList onItemSelected={(id) => history.push(id)}/>
+    );
 
     const personDetails = (
-      <PersonDetails itemId={this.state.selectedPerson}/>
+      <PersonDetails itemId={id}/>
      );
 
     return (
@@ -33,5 +20,6 @@ export default class PeoplePage extends Component {
         <Row left={itemList} right={personDetails}/>
       </div>
     );
-  }
-}
+};
+
+export default withRouter(PeoplePage);
