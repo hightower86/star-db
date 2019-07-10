@@ -8,7 +8,7 @@ const ItemList = (props) => {
 
   const { data, onItemSelected, children } = props;
 
-  const items = data.slice(5).map((item) => {
+  const items = data.map((item) => {
 
     const { id } = item;
     const label = children(item);

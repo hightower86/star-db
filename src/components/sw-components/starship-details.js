@@ -6,8 +6,13 @@ const StarshipDetails = (props) => {
 
   return (
     <ItemDetails { ... props } >
-      <Record field='length' label='Length' />
+      <Record field='model' label='Model' />
+      <Record field='manufacturer' label='Manufacturer' />
+      <Record field='costInCredits' label='Cost' />
       <Record field='cargoCapacity' label='Cargo capacity' />
+      <Record field='length' label='Length' />
+      <Record field='crew' label='Crew' />
+      <Record field='passengers' label='Passengers' />
     </ItemDetails> 
   )
 };

@@ -8,6 +8,8 @@ const PersonDetails = (props) => {
     <ItemDetails { ... props } >
       <Record field='gender' label='Gender' />
       <Record field='eyeColor' label='Eye Color' />
+      <Record field='birthYear' label='Birth year' />
+
     </ItemDetails> 
   )
 };

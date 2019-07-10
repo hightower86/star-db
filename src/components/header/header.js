@@ -28,10 +28,6 @@ const Header = ({ onServiceChange }) => {
           <Link to='/login'>Login</Link>
         </li>
       </ul>
-      <button className='btn btn-primary btn-sm mb-3'
-              onClick={onServiceChange}>
-        Dummy
-      </button>
     </div>
   );
 };
