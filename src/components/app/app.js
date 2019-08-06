@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Particles from  'react-particles-js';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
@@ -60,6 +61,7 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
+        <Particles className='particles'/>
         <SwapiServiceProvider value={this.state.swapiService}>
           <Router>
               <Header onServiceChange={this.onServiceChange}/>
