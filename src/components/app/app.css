@@ -12,5 +12,11 @@ body {
 }
 
 .jumbotron {
-  background-color: rgba(48,48,48,0.5);
+  background-color: rgba(48,48,48,0.6);
+}
+
+.list-group-item, 
+.item-details, 
+.card {
+  background-color: rgba(48,48,48,0.6);
 }
